@@ -3,7 +3,7 @@ name: Create Daily Discord Poll
 on:
   schedule:
     - cron: '0 0 * * *'  # This is UTC time, adjust accordingly to match 9 AM in your local time
-  workflow_dispatch:  # これを追加
+  workflow_dispatch:  # 手動トリガーを追加
 
 jobs:
   create_poll:
@@ -11,7 +11,7 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v3  # バージョンをv3に更新
+      uses: actions/checkout@v4  # バージョンをv4に更新
 
     - name: Set up Python
       uses: actions/setup-python@v4  # バージョンをv4に更新

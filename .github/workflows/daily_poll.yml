@@ -11,10 +11,10 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v4  # バージョンをv4に更新
+      uses: actions/checkout@v4  # 最新バージョンを使用
 
     - name: Set up Python
-      uses: actions/setup-python@v4  # バージョンをv4に更新
+      uses: actions/setup-python@v4  # 最新バージョンを使用
       with:
         python-version: '3.x'
 
@@ -27,5 +27,4 @@ jobs:
       run: python create_poll.py
       env:
         DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
-        DISCORD_GUILD_ID: ${{ secrets.DISCORD_GUILD_ID }}
         DISCORD_CHANNEL_ID: ${{ secrets.DISCORD_CHANNEL_ID }}

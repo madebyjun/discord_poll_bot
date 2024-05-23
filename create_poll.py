@@ -10,9 +10,9 @@ poll_question = {
     'text': "今日行かれますか？",
 }
 poll_answers = [
-    {'answer_id': 1, 'poll_media': {'text': 'はやめいき', 'emoji': {'name': 'rabbit2'}}},
-    {'answer_id': 2, 'poll_media': {'text': 'おそめいき', 'emoji': {'name': 'turtle'}}},
-    {'answer_id': 3, 'poll_media': {'text': 'きびし', 'emoji': {'name': 'thumbsdown'}}}
+    {'answer_id': 1, 'poll_media': {'text': 'はやめいき', 'emoji': {'name': 'sourou', 'id': '1219550208057282620'}}},
+    {'answer_id': 2, 'poll_media': {'text': 'おそめいき', 'emoji': {'name': 'chirou', 'id': '1219550492162785300'}}},
+    {'answer_id': 3, 'poll_media': {'text': 'きびし', 'emoji': {'name': 'intai', 'id': '1219548466628399174'}}}
 ]
 duration_hours = 24  # Poll duration in hours
 allow_multiselect = False

@@ -7,12 +7,12 @@ CHANNEL_ID = os.getenv('DISCORD_CHANNEL_ID')
 
 # Poll Create Request Object
 poll_question = {
-    'text': "What's your favorite color?",
+    'text': "今日行かれますか？",
 }
 poll_answers = [
-    {'answer_id': 1, 'poll_media': {'text': 'Red', 'emoji': {'name': '🔴'}}},
-    {'answer_id': 2, 'poll_media': {'text': 'Blue', 'emoji': {'name': '🔵'}}},
-    {'answer_id': 3, 'poll_media': {'text': 'Green', 'emoji': {'name': '🟢'}}}
+    {'answer_id': 1, 'poll_media': {'text': 'はやめいき', 'emoji': {'name': 'rabbit2'}}},
+    {'answer_id': 2, 'poll_media': {'text': 'おそめいき', 'emoji': {'name': 'turtle'}}},
+    {'answer_id': 3, 'poll_media': {'text': 'きびし', 'emoji': {'name': 'thumbsdown'}}}
 ]
 duration_hours = 24  # Poll duration in hours
 allow_multiselect = False
@@ -35,9 +35,7 @@ headers = {
 }
 
 data = {
-    'poll': poll_request,
-    'content': f"**{poll_question['text']}**\n" +
-               '\n'.join([f"{answer['poll_media']['emoji']['name']} {answer['poll_media']['text']}" for answer in poll_answers])
+    'poll': poll_request
 }
 
 response = requests.post(f'https://discord.com/api/v9/channels/{CHANNEL_ID}/messages', json=data, headers=headers)

@@ -1,6 +1,7 @@
 import os
 import discord
 from discord.ext import commands
+from datetime import datetime, timedelta
 
 TOKEN = os.getenv('DISCORD_BOT_TOKEN')
 GUILD_ID = os.getenv('DISCORD_GUILD_ID')
@@ -25,6 +26,7 @@ async def on_ready():
         await bot.close()
         return
 
+    # Poll Create Request Object
     poll_question = {
         'text': "What's your favorite color?",
     }
@@ -33,6 +35,12 @@ async def on_ready():
         {'answer_id': 2, 'poll_media': {'text': 'Blue', 'emoji': '🔵'}},
         {'answer_id': 3, 'poll_media': {'text': 'Green', 'emoji': '🟢'}}
     ]
+    duration_hours = 24  # Poll duration in hours
+    allow_multiselect = False
+    layout_type = 1
+
+    # Expiry time
+    expiry_time = datetime.utcnow() + timedelta(hours=duration_hours)
 
     poll_message = f"**{poll_question['text']}**\n"
     for answer in poll_answers:

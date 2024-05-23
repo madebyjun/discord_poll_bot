@@ -1,6 +1,6 @@
 import os
 import requests
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 
 TOKEN = os.getenv('DISCORD_BOT_TOKEN')
 CHANNEL_ID = os.getenv('DISCORD_CHANNEL_ID')
@@ -10,16 +10,16 @@ poll_question = {
     'text': "What's your favorite color?",
 }
 poll_answers = [
-    {'answer_id': 1, 'poll_media': {'text': 'Red', 'emoji': '🔴'}},
-    {'answer_id': 2, 'poll_media': {'text': 'Blue', 'emoji': '🔵'}},
-    {'answer_id': 3, 'poll_media': {'text': 'Green', 'emoji': '🟢'}}
+    {'answer_id': 1, 'poll_media': {'text': 'Red', 'emoji': {'name': '🔴'}}},
+    {'answer_id': 2, 'poll_media': {'text': 'Blue', 'emoji': {'name': '🔵'}}},
+    {'answer_id': 3, 'poll_media': {'text': 'Green', 'emoji': {'name': '🟢'}}}
 ]
 duration_hours = 24  # Poll duration in hours
 allow_multiselect = False
 layout_type = 1
 
 # Expiry time
-expiry_time = (datetime.utcnow() + timedelta(hours=duration_hours)).isoformat()
+expiry_time = (datetime.now(timezone.utc) + timedelta(hours=duration_hours)).isoformat()
 
 poll_request = {
     'question': poll_question,
@@ -37,7 +37,7 @@ headers = {
 data = {
     'poll': poll_request,
     'content': f"**{poll_question['text']}**\n" +
-               '\n'.join([f"{answer['poll_media']['emoji']} {answer['poll_media']['text']}" for answer in poll_answers])
+               '\n'.join([f"{answer['poll_media']['emoji']['name']} {answer['poll_media']['text']}" for answer in poll_answers])
 }
 
 response = requests.post(f'https://discord.com/api/v9/channels/{CHANNEL_ID}/messages', json=data, headers=headers)
